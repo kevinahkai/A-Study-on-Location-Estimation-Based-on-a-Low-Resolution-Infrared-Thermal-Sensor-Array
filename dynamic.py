@@ -44,6 +44,9 @@ def heatmap(frame):
     axes[0].imshow(sensordata, cmap="inferno", interpolation="bicubic")
     axes[0].scatter(x, y, color='white', s=120)  # 標記最熱點
     axes[0].set_title("Original Data")
+    axes[0].text(0.95, 0.95, f'Hotspot\nx: {x}\ny: {y}', 
+                horizontalalignment='right', verticalalignment='top', 
+                transform=axes[0].transAxes, color='white', fontsize=10)
 
     # Calculate moving average if enough data is collected
     if len(slide_window) == window_size:
@@ -53,6 +56,9 @@ def heatmap(frame):
         axes[1].imshow(ma, cmap="inferno", interpolation="bicubic")
         axes[1].scatter(ma_x, ma_y, color='white', s=120)  # 標記最熱點
         axes[1].set_title("Moving Average")
+        axes[1].text(0.95, 0.95, f'Hotspot\nx: {ma_x}\ny: {ma_y}', 
+                     horizontalalignment='right', verticalalignment='top', 
+                     transform=axes[1].transAxes, color='white', fontsize=10)
     else:
         axes[1].clear()
         axes[1].imshow(sensordata, cmap="inferno", interpolation="bicubic")
