@@ -19,6 +19,14 @@ fig, axes = plt.subplots(1, 2, figsize=(8, 4))
 slide_window = []
 window_size = 5
 
+# 初始化熱力圖和 colorbar
+sensordata = np.array(sensor.pixels)
+imgs = []
+for i in range(2):
+    img = axes[i].imshow(sensordata, cmap="inferno", interpolation="bicubic")
+    imgs.append(img)
+    plt.colorbar(img, ax=axes[i])
+
 def heatmap(frame):
     # データ取得
     sensordata = np.array(sensor.pixels)
